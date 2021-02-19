@@ -1,7 +1,7 @@
 #cloud-config
 
 ## Set your hostname here, the manage_etc_hosts will update the hosts file entries as well
-hostname: k8s-master-01
+hostname: k8s-controlplane-01
 manage_etc_hosts: true
 
 ## Set the locale of the system
@@ -10,15 +10,15 @@ locale: 'en_AU.UTF-8'
 
 ## Set the timezone
 ## Value of 'timezone' must exist in /usr/share/zoneinfo
-timezone: 'Australia/Melbourne'
-#timezone: 'America/New_York'
+#timezone: 'Australia/Melbourne'
+timezone: 'America/Los_Angeles'
 
 apt_preserve_sources_list: true
 apt_update: true
 apt_upgrade: true
 
 users:
-  - name: pi
+  - name: voltron
     primary-group: users
     shell: /bin/bash
     sudo: ALL=(ALL) NOPASSWD:ALL
@@ -32,7 +32,7 @@ users:
     lock_passwd: true
     ssh_pwauth: false
     ssh_authorized_keys:
-      - 'ssh-rsa '
+      - 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDBUwrfPkCKvREUUMpMXSCgnyhW5N5LyLjazBwb05b99Vf5FWPYyiyu9XGg4veaI/wbXz30IsjNLDbhQEaMty/kDnksuM5xM/Q3winEHlYaRjPK971LaaoY1UCIa/OTRamyFleI+RdXWq2hD1dl5uVJxDI+8La5XjrrJpoAhsE5KP8eGBjBXxoKC6CeZCU8LvaCeZcBbuBNEV79Upy7dSJTO6B9332yq+vpAVcS7PX93ic/cDW/YN0WMEG0Z8lAffRKBKMnSCu+g653jcQLzqBMGLF2O1uPRRyNKwO3kmJzpSZNFS6HkQ6ll+WBb12MPal/1EN+8n1878gMfmGUYyX5Byi1c4UCYtPxJ0U/lgL6xjU4p+thpXX2udrx/AKa21dBt7G0ODWokBL3IWWWKrE7pNBdJXF/One8OMMBXBeX1RwxnZfV1EWDkkXkK1Kj78SgZ+QPeRr2ZnYC9LRQqyBgEVktJms/0aBNT9MuWegfhDy3CnZZqUiciJQf+pZMwjd1vdvG85BOt7BLw36AyKc5qacDtPFdZ5xYDAtdxt2/cqrmtcRV4PGUlOWpuNf0FDZF50CAJ61eMCmqVoLrOsylu+qP01O6D/TqAMzyhu5RYqVzfs7Z4kIBq+EQQfI2J0HzOZUnMqiNZhPtVS04KplBVF3yl2HGmKDJZJFfhajq0Q== cardno:000614407823 '
 
 write_files:
   - path: /etc/netplan/50-cloud-init.yaml
@@ -43,12 +43,12 @@ write_files:
         ethernets:
           eth0:
             addresses:
-              - 192.168.1.121/24
-            gateway4: 192.168.1.1
+              - 10.69.0.2/24
+            gateway4: 10.69.0.1
             nameservers:
               addresses:
-                - 1.1.1.1
                 - 8.8.8.8
+                - 1.1.1.1
     ## To enable WiFi network connection
     ## Note: IP allocation is dynamic and won't match the defined state as in eth0.
     ##       This will require manually configuring the Ansible inventory file with
