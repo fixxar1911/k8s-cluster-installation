@@ -1,10 +1,13 @@
 
 [all]
-k8s-controlplane-01 hostname=k8s-controlplane-01 ansible_host=192.168.1.121 ansible_user=pi
-k8s-controlplane-02 hostname=k8s-controlplane-02 ansible_host=192.168.1.122 ansible_user=pi
-k8s-controlplane-03 hostname=k8s-controlplane-03 ansible_host=192.168.1.123 ansible_user=pi
-k8s-node-01 hostname=k8s-node-01 ansible_host=192.168.1.131 ansible_user=pi
-k8s-node-02 hostname=k8s-node-02 ansible_host=192.168.1.132 ansible_user=pi
+k8s-controlplane-01 hostname=k8s-controlplane-01 ansible_host=10.69.0.2 ansible_user=voltron
+k8s-controlplane-02 hostname=k8s-controlplane-02 ansible_host=10.69.0.3 ansible_user=voltron
+k8s-controlplane-03 hostname=k8s-controlplane-03 ansible_host=10.69.0.4 ansible_user=voltron
+k8s-node-01 hostname=k8s-node-01 ansible_host=10.69.0.5 ansible_user=voltron
+k8s-node-02 hostname=k8s-node-02 ansible_host=10.69.0.6 ansible_user=voltron
+k8s-node-03 hostname=k8s-node-03 ansible_host=10.69.0.7 ansible_user=voltron
+k8s-node-04 hostname=k8s-node-04 ansible_host=10.69.0.8 ansible_user=voltron
+k8s-node-05 hostname=k8s-node-05 ansible_host=10.69.0.9 ansible_user=voltron
 
 [cluster:children]
 controlplane
@@ -18,6 +21,10 @@ k8s-controlplane-03
 [nodes]
 k8s-node-01
 k8s-node-02
+k8s-node-03
+k8s-node-04
+k8s-node-05
+
 
 [docker_cache]
 registry hostname=registry ansible_host=192.168.1.120 ansible_user=pi
@@ -34,4 +41,7 @@ k8s-controlplane-03
 
 [workers]
 k8s-node-01
-k8s-node-01
+k8s-node-021
+k8s-node-03
+k8s-node-04
+k8s-node-05
