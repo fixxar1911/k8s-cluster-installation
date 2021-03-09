@@ -26,8 +26,8 @@ k8s-node-04
 k8s-node-05
 
 
-[docker_cache]
-registry hostname=registry ansible_host=192.168.1.120 ansible_user=pi
+;[docker_cache]
+#registry hostname=registry ansible_host=192.168.1.120 ansible_user=pi
 
 ; These entires are here for backward compatibility as we transition away from the old names.
 [k8s:children]

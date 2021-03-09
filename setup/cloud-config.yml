@@ -1,7 +1,7 @@
 #cloud-config
 
 ## Set your hostname here, the manage_etc_hosts will update the hosts file entries as well
-hostname: k8s-controlplane-01
+hostname: k8s-controlplane-03
 manage_etc_hosts: true
 
 ## Set the locale of the system
@@ -43,7 +43,7 @@ write_files:
         ethernets:
           eth0:
             addresses:
-              - 10.69.0.2/24
+              - 10.69.0.4/24
             gateway4: 10.69.0.1
             nameservers:
               addresses:
